@@ -1,4 +1,5 @@
 ******************************
 ******************************
 
-first line is api_key, second line is api_secret
+first line is api_key
+second line is api_secret
