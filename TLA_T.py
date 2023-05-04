@@ -20,30 +20,34 @@ async def main(_twitch_key, _auth_token):
 
         i = 1
         while i < len(streamer_data):
+            try:
+                ind_streamer_data = streamer_data[str(i)]
+                is_live, category, title = await check_twitch(ind_streamer_data["1_twitch_id"], _twitch_key, _auth_token)
+                signal_sent = ind_streamer_data["4_signal"]
 
-            ind_streamer_data = streamer_data[str(i)]
-            is_live, category, title = await check_twitch(ind_streamer_data["1_twitch_id"], _twitch_key, _auth_token)
-            signal_sent = ind_streamer_data["4_signal"]
+                if signal_sent == "True":
+                    signal_sent = True
+                elif signal_sent == "False":
+                    signal_sent = False
 
-            if signal_sent == "True":
-                signal_sent = True
-            elif signal_sent == "False":
-                signal_sent = False
+                if is_live is None:
+                    print()
+                elif is_live != signal_sent:  # stream status changed
+                    if is_live:  # changed to online
+                        print("방송 시작")
+                        await send_tweet(ind_streamer_data, category, title)
+                        await send_chat(ind_streamer_data["1_twitch_id"])
+                    else:  # changed to offline
+                        print("방송 종료")
 
-            if is_live is None:
-                print()
-            elif is_live != signal_sent:  # stream status changed
-                if is_live:  # changed to online
-                    print("방송 시작")
-                    await send_tweet(ind_streamer_data, category, title)
-                    await send_chat(ind_streamer_data["1_twitch_id"])
-                else:  # changed to offline
-                    print("방송 종료")
+                    await edit_list(streamer_json_path, i, is_live)
+                else:
+                    print("상태 유지")
+                i += 1
 
-                await edit_list(streamer_json_path, i, is_live)
-            else:
-                print("상태 유지")
-            i += 1
+            except Exception as err_data:
+                print("error under main.")
+                await err_logging(err_data)
 
     except Exception as err_data:
         print("error under main.")
