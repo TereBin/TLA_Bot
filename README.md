@@ -23,3 +23,8 @@ Discord : TereBin#9929
 twitter API : Twitter API v2
 
 twitter Authentication : OAuth 1.0a
+
+---
+모듈 설명
+
+check_twitch.py : twitch api를 이용, 스트리머의 아이디를 이용해 방송 정보를 읽어오는 모듈
