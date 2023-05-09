@@ -1,0 +1,16 @@
+{
+	"token": "************************************************************************",
+	"dev": "******************",
+	"server": {
+		"******************": {
+			"manager": "******************",
+			"channel": "*******************"
+		}
+	}
+}
+
+token : discord auth token
+dev : discord ID of developer
+server : server ID
+manager : discord ID of server manager
+channel : channel to send message
