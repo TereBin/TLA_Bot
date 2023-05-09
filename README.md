@@ -36,7 +36,7 @@ json 파일을 python의 dictionary 객체로 변환하는 모듈
 twitch api를 이용, 스트리머의 아이디를 이용해 방송 정보를 읽어오는 모듈  
 - [send_tweet.py](https://github.com/TereBin/TLA_Bot/blob/main/code/send_tweet.py)  
 twitter api를 이용, 스트리머의 트위터에 방송 알림을 트윗해주는 모듈  
-- [send_chat.py]()  *업로드 예정*  
+- [send_chat.py](https://github.com/TereBin/TLA_Bot/blob/main/code/send_chat.py)  *업로드 예정*  
 twitch 채팅에 방송알림 트윗을 안내하는 모듈  
 - [edit_list.py](https://github.com/TereBin/TLA_Bot/blob/main/code/edit_list.py)  
 TLA_T에서 방송이 켜지면서 json 데이터의 변경이 필요할 때 json 파일을 수정해주는 모듈  
