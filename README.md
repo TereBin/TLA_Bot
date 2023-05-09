@@ -59,7 +59,7 @@ twitch api를 이용하기 위한 api key를 담고 있는 txt 파일
 twitter api를 이용하기 위한 api key를 담고 있는 txt 파일
 - [twitch_bot_data.txt](https://github.com/TereBin/TLA_Bot/blob/main/data/twitch_bot_data.txt)  
 twitch에 채팅을 보내기 위한 auth token을 담고 있는 txt 파일  
-- [discord_data.json](https://github.com/TereBin/TLA_Bot/blob/main/data/discord_data.json)
-discord의 각 서버에 대한 관리자, 알림 채널 등의 정보를 담고 있는 json 파일
-- [discord_list.json](https://github.com/TereBin/TLA_Bot/blob/main/data/discord_list.json)
-알림을 받을 사용자에 대한 전송 서버, 전송 여부 등을 담고 있는 json 파일
+- [discord_data.json](https://github.com/TereBin/TLA_Bot/blob/main/data/discord_data.json)  
+discord의 각 서버에 대한 관리자, 알림 채널 등의 정보를 담고 있는 json 파일  
+- [discord_list.json](https://github.com/TereBin/TLA_Bot/blob/main/data/discord_list.json)  
+알림을 받을 사용자에 대한 전송 서버, 전송 여부 등을 담고 있는 json 파일  
