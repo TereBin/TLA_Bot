@@ -7,9 +7,9 @@ from check_twitch import check_twitch
 from read_list import read_list
 from err_logging import err_logging
 
-discord_data_path = "D:/TereBin/coding/TLA/data/discord_data.json"
-streamer_json_path = "D:/TereBin/coding/TLA/data/discord_list.json"
-twitch_api_path = "D:/TereBin/coding/TLA/data/twitch_api_data.txt"
+discord_data_path = "../data/discord_data.json"
+streamer_json_path = "../data/discord_list.json"
+twitch_api_path = "../data/twitch_api_data.txt"
 
 discord_dict = asyncio.run(read_list(discord_data_path))
 token = discord_dict["token"]
