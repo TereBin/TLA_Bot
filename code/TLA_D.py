@@ -92,19 +92,32 @@ async def auto_alarm():
             if list_num != "0":
                 twitch_id = list_data["id"]
                 is_live, category, title = await check_twitch(twitch_id, twitch_key, auth_token)  # check twitch
-                if is_live and list_data["sent"] == "False":
+                if is_live and list_data["sent"] == "False":            
+                    message = list_data["message"]
+                    req = []
+                    for i in list(list_data["req"]):
+                        req.append(bool(int(i)))
                     for data_num, server_id in list_data["server"].items():
                         discord_dict = await read_list(discord_data_path)
                         server_data = discord_dict["server"].get(server_id)
+                        guild = bot.get_guild(int(server_id))
                         channel = bot.get_channel(int(server_data["channel"]))
-                        print("test message sent")
-                        await channel.send(f"https://twitch.tv/{twitch_id}")
+                        if req[0]:
+                            message = message + "\n방송제목 : " + title
+                        if req[1]:
+                            message = message + "\nzkxprhfl : " + category
+                        print(f"[{guild}] alarm sent : https://twitch.tv/{twitch_id}\n")
+                        if req[2]:
+                            await channel.send(f"{message}\nhttps://twitch.tv/{twitch_id}")
+                        else:
+                            await channel.send(f"https://twitch.tv/{twitch_id}")
                         await edit_sent(list_num, True)
                 elif (not is_live) and list_data["sent"] == "True":
                     await edit_sent(list_num, False)
         except Exception as err_data:
             print("error under TLA_D.py")
             await err_logging(err_data)
-print("-" * 30)
+    print("-" * 30)
 
 bot.run(token)
+
