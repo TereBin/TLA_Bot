@@ -32,8 +32,11 @@ async def send_tweet(streamer_data, category, title):
 
     bot = tweepy.Client(consumer_key=api_key, consumer_secret=api_secret, access_token = access_token, access_token_secret=access_secret)
     if img_file != "":
-        img = bot.upload_media(img_file)
-        bot.create_tweet(status=tweet, media_ids=[media.media_key])
+        auth = tweepy.OAuthHandler(api_key, api_secret)
+        auth.set_access_token(access_token, access_secret)
+        img_bot = tweepy.API(auth)
+        img = img_bot.media_upload(img_file)
+        bot.create_tweet(text=tweet, media_ids=[img.media_id])
     else:
         bot.create_tweet(text=tweet)
 
