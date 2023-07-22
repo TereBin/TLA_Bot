@@ -21,9 +21,8 @@ async def send_tweet(streamer_data, category, title):
             streamer_req_data[i] = True
         else:
             streamer_req_data[i] = False
-
         i = i+1
-
+        
     if streamer_req_data[0]:  # category
         tweet = tweet + "\n카테고리 : [ " + category + " ]"
     if streamer_req_data[1]:  # title
@@ -31,12 +30,12 @@ async def send_tweet(streamer_data, category, title):
     if streamer_req_data[2]:  # link
         tweet = tweet + "\ntwitch.tv/" + streamer_data["1_twitch_id"]
 
-    auth = tweepy.OAuthHandler(api_key, api_secret)
-    auth.set_access_token(access_token, access_secret)
-    bot = tweepy.API(auth)
+    bot = tweepy.Client(consumer_key=api_key, consumer_secret=api_secret, access_token = access_token, access_token_secret=access_secret)
     if img_file != "":
-        bot.update_status_with_media(status=tweet, filename=img_file)
+        img = bot.upload_media(img_file)
+        bot.create_tweet(status=tweet, media_ids=[media.media_key])
     else:
-        bot.update_status(status=tweet)
+        bot.create_tweet(text=tweet)
 
     print(tweet)
+
